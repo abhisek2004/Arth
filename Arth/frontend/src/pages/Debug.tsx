@@ -44,7 +44,7 @@ export default function Debug() {
 
             // Check database connection through API
             try {
-                const contents = await fetch('https://arth-rl9l.onrender.com/api/contents');
+                const contents = await fetch('http://localhost:5000/api/contents');
                 if (contents.ok) {
                     const data = await contents.json();
                     addMessage(`✅ Database connection successful. Found ${data.length} content items.`);
