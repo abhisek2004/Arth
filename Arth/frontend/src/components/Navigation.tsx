@@ -12,7 +12,7 @@ export default function Navigation() {
     { path: '/writing', label: 'Writing', icon: FileText },
     { path: '/news', label: 'News', icon: Newspaper },
     { path: '/upload', label: 'Upload', icon: Upload },
-    { path: '/debug', label: 'Debug', icon: Bug },
+    // { path: '/debug', label: 'Debug', icon: Bug },
   ];
 
   return (
