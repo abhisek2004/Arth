@@ -26,7 +26,13 @@ export default function ContentModal({ content, onClose }: ContentModalProps) {
           {content.file_url && (content.category === 'image' || content.category === 'video') && (
             <div className="mb-6 rounded-lg overflow-hidden">
               {content.category === 'image' ? (
-                <img src={content.file_url} alt={content.title} className="w-full" />
+                <img
+                  src={content.file_url}
+                  alt={content.title}
+                  className="w-full"
+                  loading="lazy"
+                  decoding="async"
+                />
               ) : (
                 <video src={content.file_url} controls className="w-full" />
               )}

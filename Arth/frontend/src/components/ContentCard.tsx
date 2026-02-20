@@ -42,6 +42,8 @@ export default function ContentCard({ content, onView }: ContentCardProps) {
           src={imageUrl}
           alt={content.title}
           className="object-cover w-full h-48"
+          loading="lazy"
+          decoding="async"
           onError={(e) => {
             console.error('Image load error:', e);
             setImageError(true);

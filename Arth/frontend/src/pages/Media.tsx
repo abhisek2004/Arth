@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { contentService, Content } from '../lib/supabase';
 import ContentCard from '../components/ContentCard';
 import ContentModal from '../components/ContentModal';
-import { Loader2, Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react';
 
 export default function Media() {
   const [contents, setContents] = useState<Content[]>([]);
@@ -29,14 +29,6 @@ export default function Media() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
-      </div>
-    );
-  }
-
   return (
     <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div className="flex items-center justify-center mb-12">
@@ -47,7 +39,26 @@ export default function Media() {
         </div>
       </div>
 
-      {contents.length === 0 ? (
+      {loading ? (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              className="overflow-hidden bg-white rounded-xl shadow-md animate-pulse"
+            >
+              <div className="w-full h-48 bg-gray-200" />
+              <div className="p-5 space-y-3">
+                <div className="w-3/4 h-4 bg-gray-200 rounded" />
+                <div className="w-full h-3 bg-gray-200 rounded" />
+                <div className="flex items-center justify-between pt-2">
+                  <div className="w-20 h-3 bg-gray-200 rounded" />
+                  <div className="w-24 h-8 bg-gray-200 rounded-lg" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : contents.length === 0 ? (
         <div className="py-20 text-center">
           <p className="text-lg text-gray-500">No media content available yet.</p>
         </div>
@@ -55,7 +66,7 @@ export default function Media() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {contents.map((content) => (
             <ContentCard
-              key={content.id}
+              key={content._id ?? content.title}
               content={content}
               onView={setSelectedContent}
             />

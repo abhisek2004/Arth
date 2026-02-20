@@ -24,6 +24,8 @@ export default function Navigation() {
               src="/Arth.png"
               alt="ART-H Logo"
               className="object-contain w-8 h-8 rounded-lg"
+              width={32}
+              height={32}
             />
             <span className="text-xl font-semibold text-gray-900">ARTH </span>
           </Link>
